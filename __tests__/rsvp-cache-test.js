@@ -91,7 +91,7 @@ describe('simple cache', function () {
     var holder = {value: null};
 
     // When:
-    promise = c.getValue(key);
+    var promise = c.getValue(key);
    
     // Then:
     promise.then(function (d) { holder.value = d; });
@@ -109,7 +109,7 @@ describe('simple cache', function () {
     var holder = {value: null};
 
     // When:
-    promise = c.getValue(key, createStaticLoadFn(value));
+    var promise = c.getValue(key, createStaticLoadFn(value));
    
     // Then:
     promise.then(function (d) { holder.value = d; });
@@ -117,6 +117,37 @@ describe('simple cache', function () {
     jest.runAllTimers();
 
     expect(holder.value).toBe(value);
+  });
+
+  it('should trigger cache hit event', function () {
+    // Given:
+    var c = new cache.SimpleObjectCache();
+    var key = 'key';
+    var value = 1;
+    var holder = {key: null, value: 0, hitCount: 0};
+    var cacheHitFn = function () {
+      ++holder.hitCount;
+    }
+    cache.on(cache.CACHE_HIT, cacheHitFn);
+
+    // When:
+    var promise = c.getValue(key, createStaticLoadFn(value));
+
+    // Then:
+    promise.then(function (d) { holder.value = d; });
+
+    jest.runAllTimers();
+    
+    expect(holder.value).toBe(1);
+    expect(holder.hitCount).toBe(0);
+
+    promise = c.getValue(key, createStaticLoadFn(value * 2000));
+    promise.then(function (d) { holder.value = holder.value * 10 + d; });
+
+    jest.runAllTimers();
+    expect(holder.value).toBe(11);
+    expect(holder.hitCount).toBe(1);
+    cache.off(cache.CACHE_HIT, cacheHitFn);
   });
 
   it('should delete cached value', function () {
@@ -129,7 +160,7 @@ describe('simple cache', function () {
     var holder = {value: null, fail: null};
 
     // When:
-    promise = c.getValue(key);
+    var promise = c.getValue(key);
    
     // Then:
     promise.then(function () { holder.fail = 'Delete did not take an effect'; });
