@@ -1,6 +1,6 @@
 {
   "name": "rsvp-cache",
-  "version": "0.0.5",
+  "version": "1.0.0",
   "description": "Simple local caching library built on top of RSVP promises. This library has no dependency other than rsvp.js",
   "main": "rsvp-cache.js",
   "devDependencies": {
