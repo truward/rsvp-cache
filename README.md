@@ -5,6 +5,8 @@ RSVP Cache
 
 RSVP Cache is a lightweight library that provides an access to various caching mechanisms using [rsvp](https://github.com/tildeio/rsvp.js) Promises.
 
+Published module can be found in npm repository, latest stable version is available [here](https://www.npmjs.com/package/rsvp-cache).
+
 # Simple Usage Sample
 
 ```js
