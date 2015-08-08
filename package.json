@@ -1,0 +1,27 @@
+{
+  "name": "rsvp-cache",
+  "version": "0.0.5",
+  "description": "Simple local caching library built on top of RSVP promises. This library has no dependency other than rsvp.js",
+  "main": "rsvp-cache.js",
+  "devDependencies": {
+    "jest-cli": "^0.4.0",
+    "rsvp": "^3.0.0"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com/truward/rsvp-cache.git"
+  },
+  "keywords": [
+    "rsvp",
+    "cache"
+  ],
+  "author": "Alexander Shabanov <avshabanov@gmail.com> (https://github.com/avshabanov)",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/truward/rsvp-cache/issues"
+  },
+  "homepage": "https://github.com/truward/rsvp-cache"
+}

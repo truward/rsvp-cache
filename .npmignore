@@ -1,0 +1,6 @@
+/node_modules
+/target
+/demo
+/__tests__
+/.npmignore
+/CHANGELOG.md
